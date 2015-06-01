@@ -12,6 +12,18 @@ $(function() {
     };
   }
 
+  var displayGarage = function() {
+    for(var i = 0; i < garage.users.length; i++) {
+      $('.car-list').append(<section class='user-info'><p class='user-first-name'></p><p class='user-last-name'></p><p class='user-email'></p></section>);
+      garage.users[i].displayUser;
+      for (var j = 0; j < garage.users[i].cars.length; j++) {
+        garage.users[i].cars[j]
+        $('user-info').append(<section class='vehicle-list'><div class='color'></div><div class='year'></div><div class='make'></div><div class='model'></div><div class='cost'></div></section>);
+      };
+    };
+  }
+
+
 });
 
 $(function() {
