@@ -1,5 +1,20 @@
 $(function() {
 
+  function Garage(addCars, removeCars, linkUser) {
+    this.addCars = new Car();
+    this.removeCars = removeCars;
+    this.linkUser = new User();
+    var displayGarage = function() {
+    for(var i = 0; i < garage.users.length; i++) {
+      $('.car-list').append(<section class='user-info'><p class='user-first-name'></p><p class='user-last-name'></p><p class='user-email'></p></section>);
+      garage.users[i].displayUser;
+      for (var j = 0; j < garage.users[i].cars.length; j++) {
+        garage.users[i].cars[j]
+        $('user-info').append(<section class='vehicle-list'><div class='color'></div><div class='year'></div><div class='make'></div><div class='model'></div><div class='cost'></div></section>);
+      };
+    };
+  }
+}
 
   function User(firstName, lastName, email) {
     this.firstName   = firstName;
@@ -26,17 +41,5 @@ $(function() {
       $('.cost').textContent(this.cost);
     };
   }
-
-  var displayGarage = function() {
-    for(var i = 0; i < garage.users.length; i++) {
-      $('.car-list').append(<section class='user-info'><p class='user-first-name'></p><p class='user-last-name'></p><p class='user-email'></p></section>);
-      garage.users[i].displayUser;
-      for (var j = 0; j < garage.users[i].cars.length; j++) {
-        garage.users[i].cars[j]
-        $('user-info').append(<section class='vehicle-list'><div class='color'></div><div class='year'></div><div class='make'></div><div class='model'></div><div class='cost'></div></section>);
-      };
-    };
-  }
-
 
 });
