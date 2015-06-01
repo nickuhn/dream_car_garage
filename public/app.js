@@ -25,6 +25,16 @@ $(function() {
       $('.model').text(this.model);
       $('.cost').text(this.cost);
     };
+    function() {
+      $(#add).on('click' function(){
+        .preventDefault();
+        $('td.color1').textContent(this.color);
+        $('td.year1').textContent(this.year);
+        $('td.make1').textContent(this.make);
+        $('td.model1').textContent(this.model);
+        $('td.cost1').textContent(this.cost);
+      });
+    }
   }
 
   function Garage() {
