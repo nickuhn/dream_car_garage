@@ -1,0 +1,23 @@
+{
+  "name": "dream_car_garage",
+  "version": "1.0.0",
+  "description": "Welcome to Dream Car Garage. You just won $1 Million dollars and get to spend it on 5 cars.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickuhn/dream_car_garage.git"
+  },
+  "author": "Marcel, Nate, Nick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickuhn/dream_car_garage/issues"
+  },
+  "homepage": "https://github.com/nickuhn/dream_car_garage#readme",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
