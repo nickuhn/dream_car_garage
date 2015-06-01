@@ -5,3 +5,30 @@ body {
 h1, h2, h3 {
   font-family: 'PT Sans', sans-serif;
 }
+
+#mainNav {
+  margin: 13px 0 0 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 20px 0 0;
+  margin-bottom: 130px;
+  width: 100%;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  background: #EFEFEF;
+}
+
+ul {
+  margin: 10px auto;
+  background: lightgray;
+}
+
+
