@@ -31,6 +31,18 @@ $(function() {
     this.cars.push(new Car(color, year, make, model, cost));
   }
 
+  //Nate's Work in Progress
+  // function() {
+  //   $(#add).on('click' function(){
+  //     .preventDefault();
+  //     $('td.color1').textContent(this.color);
+  //     $('td.year1').textContent(this.year);
+  //     $('td.make1').textContent(this.make);
+  //     $('td.model1').textContent(this.model);
+  //     $('td.cost1').textContent(this.cost);
+  //   });
+  // }
+
   nicks = new Garage('Nick', 'Kuhn', 'nkuhn@email.com');
   nates = new Garage('Nate', 'Pecota', 'npecota@email.com');
   nicks.addCars('black', 2012, 'aston martin', 'vanquish', 100000);
@@ -38,7 +50,6 @@ $(function() {
   nates.addCars('red', 1969, 'chevy', 'chevelle', 750000);
   nicks.displayGarage();
   nates.displayGarage();
-
 
 });
 
