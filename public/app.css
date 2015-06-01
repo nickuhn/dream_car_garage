@@ -7,13 +7,12 @@ h1, h2, h3 {
 }
 
 #mainNav {
-  margin: 13px 0 0 0;
+  margin: 0 0 0 0;
 }
 
 nav ul li {
   display: inline;
-  margin: 0 20px 0 0;
-  margin-bottom: 130px;
+  padding-left: 2px;
   width: 100%;
 }
 
@@ -23,10 +22,13 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
-  background: #EFEFEF;
+}
+
+nav a:active {
+  background-color: lightgray;
 }
 
 ul {
   margin: 10px auto;
-  background: lightgray;
+  /*background: lightgray;*/
 }
