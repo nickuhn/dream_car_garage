@@ -1,16 +1,5 @@
 $(function() {
-
-  function User(firstName, lastName, email) {
-    this.firstName   = firstName;
-    this.lastName    = lastName;
-    this.email       = email;
-    this.cars        = [];
-    this.displayUser = function(){
-      $('.user-first-name').text(this.firstName);
-      $('.user-last-name').text(this.lastName);
-      $('.user-email').text(this.email);
-    };
-  }
+  var tableCounter = 0;
 
   function Car(color, year, make, model, cost) {
     this.color  = color;
@@ -18,49 +7,49 @@ $(function() {
     this.make   = make;
     this.model  = model;
     this.cost   = cost;
-    this.displayCar = function() {
-      $('.color').text(this.color);
-      $('.year').text(this.year);
-      $('.make').text(this.make);
-      $('.model').text(this.model);
-      $('.cost').text(this.cost);
-    };
-    function() {
-      $(#add).on('click' function(){
-        .preventDefault();
-        $('td.color1').textContent(this.color);
-        $('td.year1').textContent(this.year);
-        $('td.make1').textContent(this.make);
-        $('td.model1').textContent(this.model);
-        $('td.cost1').textContent(this.cost);
-      });
-    }
   }
 
-  function Garage() {
+  function Garage(firstName, lastName, email) {
+    this.firstName   = firstName;
+    this.lastName    = lastName;
+    this.email       = email;
+    this.cars        = [];
     this.removeCars = 0;
-    this.users = [];
     this.displayGarage = function() {
-      for(var i = 0; i < this.users.length; i++) {
-        console.log(this.users[i]);
-        $('.car-list').append('<section class="user-info two columns"><p class="user-first-name"></p><p class="user-last-name"></p><p class="user-email"></p></section>');
-        this.users[i].displayUser();
-        console.log(this.users[i].cars);
-        for (var j = 0; j < this.users[i].cars.length; j++) {
-          $('.car-list').append('<section class="vehicle-list ten columns"><div class="color"></div><div class="year"></div><div class="make"></div><div class="model"></div><div class="cost"></div></section>');
-          this.users[i].cars[j].displayCar();
-        };
+      tableId = 'table' + tableCounter;
+      $('.car-list').append('<table class="vehicle-list twelve columns" id=' + tableId + '></table>');
+      $('#' + tableId).append('<tr id="user-info"><th>Name:</th><th><strong>' + this.firstName + ' ' + this.lastName + '</strong></th><th>Email:</th><th><strong>' + this.email + '</strong></th></tr>');
+      $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
+      for (var j = 0; j < this.cars.length; j++) {
+        $('#' + tableId).append('<tr><td class="color">' + this.cars[j].color + '</td><td class="year">' + this.cars[j].year + '</td><td class="make">' + this.cars[j].make + '</td><td class="model">' + this.cars[j].model + '</td><td class="cost">' + this.cars[j].cost + '</td></tr>');
       };
+      tableCounter ++;
     }
   }
 
-  Garage.prototype.addUser = function(firstName, lastName, email){
-    this.users.push(new User(firstName, lastName, email));
-  }
-
-  User.prototype.addCars = function(color, year, make, model, cost){
+  Garage.prototype.addCars = function(color, year, make, model, cost){
     this.cars.push(new Car(color, year, make, model, cost));
   }
+
+  //Nate's Work in Progress
+  // function() {
+  //   $(#add).on('click' function(){
+  //     .preventDefault();
+  //     $('td.color1').textContent(this.color);
+  //     $('td.year1').textContent(this.year);
+  //     $('td.make1').textContent(this.make);
+  //     $('td.model1').textContent(this.model);
+  //     $('td.cost1').textContent(this.cost);
+  //   });
+  // }
+
+  nicks = new Garage('Nick', 'Kuhn', 'nkuhn@email.com');
+  nates = new Garage('Nate', 'Pecota', 'npecota@email.com');
+  nicks.addCars('black', 2012, 'aston martin', 'vanquish', 100000);
+  nicks.addCars('green', 2015, 'dodge', 'hellcat', 60000);
+  nates.addCars('red', 1969, 'chevy', 'chevelle', 750000);
+  nicks.displayGarage();
+  nates.displayGarage();
 
 });
 
