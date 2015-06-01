@@ -1,29 +1,14 @@
 $(function() {
 
-  function Garage(addCars, removeCars, linkUser) {
-    this.addCars = new Car();
-    this.removeCars = removeCars;
-    this.linkUser = new User();
-    var displayGarage = function() {
-    for(var i = 0; i < garage.users.length; i++) {
-      $('.car-list').append(<section class='user-info'><p class='user-first-name'></p><p class='user-last-name'></p><p class='user-email'></p></section>);
-      garage.users[i].displayUser;
-      for (var j = 0; j < garage.users[i].cars.length; j++) {
-        garage.users[i].cars[j]
-        $('user-info').append(<section class='vehicle-list'><div class='color'></div><div class='year'></div><div class='make'></div><div class='model'></div><div class='cost'></div></section>);
-      };
-    };
-  }
-}
-
   function User(firstName, lastName, email) {
     this.firstName   = firstName;
     this.lastName    = lastName;
     this.email       = email;
+    this.cars        = [];
     this.displayUser = function(){
-      $('.user-first-name').textContent(this.firstName);
-      $('.user-last-name').textContent(this.lastName);
-      $('.user-email').textContent(this.email);
+      $('.user-first-name').text(this.firstName);
+      $('.user-last-name').text(this.lastName);
+      $('.user-email').text(this.email);
     };
   }
 
@@ -34,12 +19,37 @@ $(function() {
     this.model  = model;
     this.cost   = cost;
     this.displayCar = function() {
-      $('.color').textContent(this.color);
-      $('.year').textContent(this.year);
-      $('.make').textContent(this.make);
-      $('.model').textContent(this.model);
-      $('.cost').textContent(this.cost);
+      $('.color').text(this.color);
+      $('.year').text(this.year);
+      $('.make').text(this.make);
+      $('.model').text(this.model);
+      $('.cost').text(this.cost);
     };
+  }
+
+  function Garage() {
+    this.removeCars = 0;
+    this.users = [];
+    this.displayGarage = function() {
+      for(var i = 0; i < this.users.length; i++) {
+        console.log(this.users[i]);
+        $('.car-list').append('<section class="user-info two columns"><p class="user-first-name"></p><p class="user-last-name"></p><p class="user-email"></p></section>');
+        this.users[i].displayUser();
+        console.log(this.users[i].cars);
+        for (var j = 0; j < this.users[i].cars.length; j++) {
+          $('.car-list').append('<section class="vehicle-list ten columns"><div class="color"></div><div class="year"></div><div class="make"></div><div class="model"></div><div class="cost"></div></section>');
+          this.users[i].cars[j].displayCar();
+        };
+      };
+    }
+  }
+
+  Garage.prototype.addUser = function(firstName, lastName, email){
+    this.users.push(new User(firstName, lastName, email));
+  }
+
+  User.prototype.addCars = function(color, year, make, model, cost){
+    this.cars.push(new Car(color, year, make, model, cost));
   }
 
 });
