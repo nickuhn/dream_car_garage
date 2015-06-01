@@ -36,11 +36,23 @@ ul {
 table {
   border-collapse: collapse;
 }
-#user-info th{
+th {
+  font-family: 'PT Sans', sans-serif;
+}
+
+#user-info th, td, th{
+  color: #FFCB0D;
+  background-color: #014225;
   text-align: center;
-  border: 4px solid black;
+  border: 4px solid #000;
   border-collapse: collapse;
 }
+
+tr:hover td{
+  background-color: #FFCB0D;
+  color: #014225;
+}
+
 
 fieldset {
   /*width: 180px;*/
