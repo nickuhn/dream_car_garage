@@ -27,17 +27,25 @@ $(function() {
     this.cars.push(new Car(color, year, make, model, cost));
   };
 
-$('#userButton').on('click', function(e) {
-  e.preventDefault();
-  var firstName = $('#firstName').val();
-  var lastName = $('#lastName').val();
-  var email = $('#email').val();
-  newGarages.push(new Garage(firstName, lastName, email));
-  for(i = 1; i <= 5; i++) {
-    newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
-  }
-    garagesRef.child(newGarages[0].firstName).set(JSON.stringify(newGarages[0]));
-});
+  $('#userButton').on('click', function(e) {
+    e.preventDefault();
+    $('#createWarning').remove();
+    if ($('#color1').text() != '') {
+      var firstName = $('#firstName').val();
+      var lastName = $('#lastName').val();
+      var email = $('#email').val();
+      newGarages.push(new Garage(firstName, lastName, email));
+        for(i = 1; i <= 5; i++) {
+          if($('#color' + i).text() != ''){
+          newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
+          }
+        }
+      garagesRef.child(newGarages[0].firstName).set(JSON.stringify(newGarages[0]));
+      $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
+    } else {
+      $('#userButton').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
+    }
+  });
 
   $('#add').on('click', function(e) {
   e.preventDefault();
@@ -63,7 +71,7 @@ $('#userButton').on('click', function(e) {
     $('#cost' + counter).text(cost);
     counter ++;
   } else {
-    $('#add').after('<p>Total Must Be Less Than $1,000,000</p>');
+    $('#add').after('<p class="warning">Total Must Be Less Than $1,000,000</p>');
   }
 });
 
