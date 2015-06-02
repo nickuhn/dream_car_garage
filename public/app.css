@@ -86,6 +86,11 @@ th {
   margin-top: 29px;
 }
 
+#remove {
+  padding-left: 11px;
+  padding-right: 10px
+}
+
 #user-info th, td, th{
   color: #FFCB0D;
   background-color: #014225;
