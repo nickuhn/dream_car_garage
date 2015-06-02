@@ -41,9 +41,9 @@ $(function() {
           }
         }
       garagesRef.child(newGarages[0].firstName).set(JSON.stringify(newGarages[0]));
-      $('#userButton').after('<p id="createWarning">Your garage was successfully submitted!</p>' + '<a href="view.html">Click here to view garages!</a>');
+      $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
     } else {
-      $('#userButton').after('<p id="createWarning">Please enter at least one car</p>');
+      $('#userButton').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
     }
   });
 
@@ -71,7 +71,7 @@ $(function() {
     $('#cost' + counter).text(cost);
     counter ++;
   } else {
-    $('#add').after('<p>Total Must Be Less Than $1,000,000</p>');
+    $('#add').after('<p class="warning">Total Must Be Less Than $1,000,000</p>');
   }
 });
 
