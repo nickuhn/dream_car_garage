@@ -35,9 +35,16 @@ button {
   border-radius: 3px;
   border: 1px solid #000000;
   background-color: #1C4B11;
-  -webkit-box-shadow: 1px 4px 2px 0px #000;
-  -moz-box-shadow:    1px 4px 2px 0px #000;
-  box-shadow:         1px 4px 2px 0px #000;
+  -webkit-box-shadow: 1px 5px 2px 0px #000000;
+  -moz-box-shadow:    1px 5px 2px 0px #000000;
+  box-shadow:         1px 5px 2px 0px #000000;
+}
+
+button:active {
+  -webkit-box-shadow: 0 2px 0 #000000;
+  -moz-box-shadow: 0 2px 0 #000000;
+  box-shadow: 0 2px 0 #000000;
+  transform: translateY(3px);
 }
 
 .Active {
