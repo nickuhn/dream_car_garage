@@ -69,6 +69,33 @@ tr:hover td{
   color: #014225;
 }
 
+.warning {
+  background-color: red;
+  font-family: 'PT Sans', sans-serif;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-radius: 1px;
+  text-align: center;
+  padding: 7px;
+}
+
+.success {
+  background-color: #EAA023;
+  font-family: 'PT Sans', sans-serif;
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-radius: 1px;
+  text-align: center;
+  padding: 7px;
+}
+
+.success a {
+  text-decoration: none;
+  color: #014225;
+}
+
 fieldset {
   border: 1px solid #000000;
   padding-left: 2px;
