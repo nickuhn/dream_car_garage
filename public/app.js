@@ -4,6 +4,8 @@ $(function() {
   var tableCounter = 0;
   var ref = new Firebase('https://dream-car-garage.firebaseio.com/');
   var garagesRef = ref.child('garage');
+  var newGarages = [];
+  var counter = 1;
 
   function Car(color, year, make, model, cost) {
     this.color  = color;
@@ -25,17 +27,32 @@ $(function() {
     this.cars.push(new Car(color, year, make, model, cost));
   };
 
-  //Nate's Work in Progress
-  // function() {
-  //   $(#add).on('click' function(){
-  //     .preventDefault();
-  //     $('td.color1').textContent(this.color);
-  //     $('td.year1').textContent(this.year);
-  //     $('td.make1').textContent(this.make);
-  //     $('td.model1').textContent(this.model);
-  //     $('td.cost1').textContent(this.cost);
-  //   });
-  // }
+$('#userButton').on('click', function(e) {
+  e.preventDefault();
+  var firstName = $('#firstName').val();
+  var lastName = $('#lastName').val();
+  var email = $('#email').val();
+  newGarages.push(new Garage(firstName, lastName, email));
+  for(i = 1; i <= 5; i++) {
+    newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
+  }
+  console.log(newGarages);
+});
+
+$('#add').on('click', function(e) {
+  e.preventDefault();
+  var color = $('#color').val();
+  var year = $('#year').val();
+  var make = $('#make').val();
+  var model = $('#model').val();
+  var cost = $('#cost').val();
+  $('#color' + counter).text(color);
+  $('#year' + counter).text(year);
+  $('#make' + counter).text(make);
+  $('#model' + counter).text(model);
+  $('#cost' + counter).text(cost);
+  counter ++;
+});
 
   var nicks = new Garage('Nick', 'Kuhn', 'nkuhn@email.com');
   var nates = new Garage('Nate', 'Pecota', 'npecota@email.com');
