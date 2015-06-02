@@ -1,5 +1,6 @@
 $(function() {
-  var garages = [];
+  var garages;
+  var garageList = [];
   var tableCounter = 0;
   var ref = new Firebase('https://dream-car-garage.firebaseio.com/');
   var garagesRef = ref.child('garage');
@@ -41,27 +42,30 @@ $(function() {
   nicks.addCars('black', 2012, 'aston martin', 'vanquish', 100000);
   nicks.addCars('green', 2015, 'dodge', 'hellcat', 60000);
   nates.addCars('red', 1969, 'chevy', 'chevelle', 750000);
-  garagesRef.set(JSON.stringify(nicks));
-  // garagesRef.set(JSON.stringify(nates));
+  garagesRef.child('nicks').set(JSON.stringify(nicks));
+  garagesRef.child('nates').set(JSON.stringify(nates));
 
   ref.on('child_added', function(snapshot) {
-  garages.push(JSON.parse(snapshot.val()));
+  garages = snapshot.val();
+  for (var key in garages) {
+    garageList.push(JSON.parse(garages[key]));
+  }
+  displayGarage();
   });
 
   var displayGarage = function() {
-    for (var i = 0; i < garages.length; i++) {
+    for (var i = 0; i < garageList.length; i++) {
       var tableId = 'table' + tableCounter;
       $('.car-list').append('<table class="vehicle-list twelve columns" id=' + tableId + '></table>');
-      $('#' + tableId).append('<tr id="user-info"><th>Name:</th><th><strong>' + garages[i].firstName + ' ' + garages[i].lastName + '</strong></th><th>Email:</th><th><strong>' + garages[i].email + '</strong></th></tr>');
+      $('#' + tableId).append('<tr id="user-info"><th>Name:</th><th><strong>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</strong></th><th>Email:</th><th><strong>' + garageList[i].email + '</strong></th></tr>');
       $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
-      for (var j = 0; j < garages[i].cars.length; j++) {
-        $('#' + tableId).append('<tr><td class="year">' + garages[i].cars[j].year + '</td><td class="make">' + garages[i].cars[j].make + '</td><td class="model">' + garages[i].cars[j].model + '</td><td class="color">' + garages[i].cars[j].color + '</td><td class="cost">' + garages[i].cars[j].cost + '</td></tr>');
+      for (var j = 0; j < garageList[i].cars.length; j++) {
+        $('#' + tableId).append('<tr><td class="year">' + garageList[i].cars[j].year + '</td><td class="make">' + garageList[i].cars[j].make + '</td><td class="model">' + garageList[i].cars[j].model + '</td><td class="color">' + garageList[i].cars[j].color + '</td><td class="cost">' + garageList[i].cars[j].cost + '</td></tr>');
       }
       tableCounter ++;
     }
   };
 
-  displayGarage();
 });
 
 
