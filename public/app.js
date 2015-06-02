@@ -36,31 +36,36 @@ $('#userButton').on('click', function(e) {
   for(i = 1; i <= 5; i++) {
     newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
   }
-  console.log(newGarages);
+    garagesRef.child(newGarages[0].firstName).set(JSON.stringify(newGarages[0]));
 });
 
-$('#add').on('click', function(e) {
+  $('#add').on('click', function(e) {
   e.preventDefault();
-  var color = $('#color').val();
-  var year = $('#year').val();
-  var make = $('#make').val();
-  var model = $('#model').val();
-  var cost = $('#cost').val();
-  $('#color' + counter).text(color);
-  $('#year' + counter).text(year);
-  $('#make' + counter).text(make);
-  $('#model' + counter).text(model);
-  $('#cost' + counter).text(cost);
-  counter ++;
+  var total = 0;
+  var cost1 = parseInt($('#cost1').text(), 10);
+  console.log(cost1);
+  var cost2 = parseInt($('#cost2').text(), 10);
+  var cost3 = parseInt($('#cost3').text(), 10);
+  var cost4 = parseInt($('#cost4').text(), 10);
+  var cost5 = parseInt($('#cost5').text(), 10);
+  total = cost1 + cost2 + cost3 + cost4 + cost5 + parseInt($('#cost').val(), 10);
+  console.log(total);
+  if(total <= 1000000) {
+    var color = $('#color').val();
+    var year = $('#year').val();
+    var make = $('#make').val();
+    var model = $('#model').val();
+    var cost = $('#cost').val();
+    $('#color' + counter).text(color);
+    $('#year' + counter).text(year);
+    $('#make' + counter).text(make);
+    $('#model' + counter).text(model);
+    $('#cost' + counter).text(cost);
+    counter ++;
+  } else {
+    $('#add').after('<p>Total Must Be Less Than $1,000,000</p>');
+  }
 });
-
-  var nicks = new Garage('Nick', 'Kuhn', 'nkuhn@email.com');
-  var nates = new Garage('Nate', 'Pecota', 'npecota@email.com');
-  nicks.addCars('black', 2012, 'aston martin', 'vanquish', 100000);
-  nicks.addCars('green', 2015, 'dodge', 'hellcat', 60000);
-  nates.addCars('red', 1969, 'chevy', 'chevelle', 750000);
-  garagesRef.child('nicks').set(JSON.stringify(nicks));
-  garagesRef.child('nates').set(JSON.stringify(nates));
 
   ref.on('child_added', function(snapshot) {
   garages = snapshot.val();
