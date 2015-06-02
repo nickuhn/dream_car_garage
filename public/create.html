@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Dream Car Garage</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="skeleton.css">
     <link rel="stylesheet" type="text/css" href="app.css">
     <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
@@ -25,24 +26,32 @@
      </div>
     </header>
     <section class="container u-full-width">
-    <form class="garageOwnerInfo">
+    <form class="newCar">
       <fieldset class="u-full-width">
-        <legend class="legend">Garage Owner Info</legend>
+        <legend class="legend">Add New Car</legend>
         <div class="row">
-          <div class="three columns">
-          <label for="firstName" class="data">First Name:</label>
-          <input type="text" id="firstName" class="firstName u-full-width" placeholder="First Name" required="required" />
+          <div class="two columns">
+          <label for="color" class="data">Color:</label>
+          <input type="text" id="color" class="color u-full-width" placeholder="Color" required="required" />
           </div>
-          <div class="three columns">
-          <label for="lastName" class="data">Last Name:</label>
-          <input type="text" id="lastName" class="lastName u-full-width" placeholder="Last Name" required="required" />
+          <div class="two columns">
+          <label for="year" class="data">Year:</label>
+          <input type="number" id="year" class="year u-full-width" placeholder="Year" required="required" />
           </div>
-          <div class="three columns">
-          <label for="email" class="data">Email:</label>
-          <input type="email" id="email" class="email u-full-width" placeholder="Email" required="required" />
+          <div class="two columns">
+          <label for="make" class="data">Make:</label>
+          <input type="text" id="make" class="make u-full-width" placeholder="Make" required="required" />
           </div>
-          <div class="three columns">
-          <button type="submit" class="u-full-width" id="userButton">Create Garage</button>
+          <div class="two columns">
+          <label for="model" class="data">Model:</label>
+          <input type="text" id="model" class="model u-full-width" placeholder="Model" required="required" />
+          </div>
+          <div class="two columns">
+          <label for="cost" class="data">Cost:</label>
+          <input type="number" id="cost" class="cost u-full-width" placeholder="Cost" required="required" />
+          </div>
+          <div class="two columns">
+          <button id="add" class="u-full-width">Add Car</button>
           </div>
         </div>
       </fieldset>
@@ -100,34 +109,27 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
     <section class="container u-full-width">
-    <form class="newCar">
+    <form class="garageOwnerInfo">
       <fieldset class="u-full-width">
-        <legend class="legend">Add New Car</legend>
+        <legend class="legend">Garage Owner Info</legend>
         <div class="row">
-          <div class="two columns">
-          <label for="color" class="data">Color:</label>
-          <input type="text" id="color" class="color u-full-width" placeholder="Color" required="required" />
+          <div class="three columns">
+          <label for="firstName" class="data">First Name:</label>
+          <input type="text" id="firstName" class="firstName u-full-width" placeholder="First Name" required="required" />
           </div>
-          <div class="two columns">
-          <label for="year" class="data">Year:</label>
-          <input type="number" id="year" class="year u-full-width" placeholder="Year" required="required" />
+          <div class="three columns">
+          <label for="lastName" class="data">Last Name:</label>
+          <input type="text" id="lastName" class="lastName u-full-width" placeholder="Last Name" required="required" />
           </div>
-          <div class="two columns">
-          <label for="make" class="data">Make:</label>
-          <input type="text" id="make" class="make u-full-width" placeholder="Make" required="required" />
+          <div class="three columns">
+          <label for="email" class="data">Email:</label>
+          <input type="email" id="email" class="email u-full-width" placeholder="Email" required="required" />
           </div>
-          <div class="two columns">
-          <label for="model" class="data">Model:</label>
-          <input type="text" id="model" class="model u-full-width" placeholder="Model" required="required" />
-          </div>
-          <div class="two columns">
-          <label for="cost" class="data">Cost:</label>
-          <input type="number" id="cost" class="cost u-full-width" placeholder="Cost" required="required" />
-          </div>
-          <div class="two columns">
-          <button id="add" class="u-full-width">Add Car</button>
+          <div class="three columns">
+          <button type="submit" class="u-full-width" id="userButton">Create Garage</button>
           </div>
         </div>
       </fieldset>
