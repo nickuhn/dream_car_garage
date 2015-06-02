@@ -142,3 +142,11 @@ fieldset {
   display: inline;
   text-shadow: 1px 3px 1px #000;
 }
+
+#mainContent {
+  background-color: lightgrey;
+  opacity: .7;
+  padding: 10px;
+  border-radius: 3px;
+  color: #1C4B11;
+}
