@@ -18,7 +18,7 @@ button {
 }
 
 .Active {
-  background-color: #EAA023;
+  background-color: #FFCB0D;
   color: #1C4B11;
 }
 
@@ -48,6 +48,12 @@ th {
   font-family: 'PT Sans', sans-serif;
 }
 
+
+
+#userButton {
+  margin-top: 29px;
+}
+
 #user-info th, td, th{
   color: #FFCB0D;
   background-color: #014225;
@@ -61,10 +67,8 @@ tr:hover td{
   color: #014225;
 }
 
-
 fieldset {
-  /*width: 180px;*/
   border: 1px solid #000000;
   border-radius: 10px;
-/*  padding: 10px;*/
+
   display: inline; }
