@@ -71,9 +71,20 @@ $(function() {
     $('#cost' + counter).text(cost);
     counter ++;
   } else {
-    $('#add').after('<p class="warning">Total Must Be Less Than $1,000,000</p>');
+    $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
   }
 });
+
+  $('#remove').on('click', function(e) {
+    e.preventDefault();
+    $('#addWarning').remove();
+    counter --;
+    $('#color' + counter).text('');
+    $('#year' + counter).text('');
+    $('#make' + counter).text('');
+    $('#model' + counter).text('');
+    $('#cost' + counter).text(0);
+  });
 
   ref.on('child_added', function(snapshot) {
   garages = snapshot.val();
