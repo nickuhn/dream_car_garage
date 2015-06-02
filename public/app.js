@@ -35,13 +35,17 @@ $(function() {
       var lastName = $('#lastName').val();
       var email = $('#email').val();
       newGarages.push(new Garage(firstName, lastName, email));
-        for(i = 1; i <= 5; i++) {
+        for(var i = 1; i <= 5; i++) {
           if($('#color' + i).text() != ''){
           newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
           }
         }
       garagesRef.child(newGarages[0].firstName).set(JSON.stringify(newGarages[0]));
       $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
+      for(var j = 0; j < 5; j++) {
+        removeRow();
+      }
+      $('#totalCost').text(0);
     } else {
       $('#userButton').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
     }
@@ -57,7 +61,8 @@ $(function() {
   var cost4 = parseInt($('#cost4').text(), 10);
   var cost5 = parseInt($('#cost5').text(), 10);
   total = cost1 + cost2 + cost3 + cost4 + cost5 + parseInt($('#cost').val(), 10);
-  console.log(total);
+  $('#totalCost').text(total);
+  console.log();
   if(total <= 1000000) {
     var color = $('#color').val();
     var year = $('#year').val();
@@ -77,14 +82,21 @@ $(function() {
 
   $('#remove').on('click', function(e) {
     e.preventDefault();
+    removeRow();
+  });
+
+  var removeRow = function () {
     $('#addWarning').remove();
     counter --;
+    var totalCost = parseInt($('#totalCost').text());
+    var cost = parseInt($('#cost' + counter).text());
+    $('#totalCost').text(totalCost - cost);
     $('#color' + counter).text('');
     $('#year' + counter).text('');
     $('#make' + counter).text('');
     $('#model' + counter).text('');
     $('#cost' + counter).text(0);
-  });
+  }
 
   ref.on('child_added', function(snapshot) {
   garages = snapshot.val();
