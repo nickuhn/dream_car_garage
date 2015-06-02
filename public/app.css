@@ -1,9 +1,29 @@
 body {
   font-family: 'Lora', serif;
+  /*background-image: url(http://cdn.wallwuzz.com/uploads/backgrounds-desktop-originalimages-wallpaper-underground-car-cars-garage-carsgallery-wallpapers-wallwuzz-hd-wallpaper-11769.jpg);
+  background-size: 100%;*/
+}
+
+body::after{
+  content: "";
+  background: url(http://cdn.wallwuzz.com/uploads/backgrounds-desktop-originalimages-wallpaper-underground-car-cars-garage-carsgallery-wallpapers-wallwuzz-hd-wallpaper-11769.jpg);
+  opacity: 0.7;
+  background-size: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 h1, h2, h3 {
   font-family: 'PT Sans', sans-serif;
+}
+
+h1 {
+  color:#FFCB0D;
+  text-shadow: 1px 3px 1px #000;
 }
 
 button {
@@ -15,6 +35,9 @@ button {
   border-radius: 3px;
   border: 1px solid #000000;
   background-color: #1C4B11;
+  -webkit-box-shadow: 1px 4px 2px 0px #000;
+  -moz-box-shadow:    1px 4px 2px 0px #000;
+  box-shadow:         1px 4px 2px 0px #000;
 }
 
 .Active {
@@ -43,6 +66,7 @@ ul {
 table {
   border-collapse: collapse;
   border-radius: 12px;
+  opacity: .9;
 }
 
 th {
@@ -98,8 +122,11 @@ tr:hover td{
 }
 
 fieldset {
-  border: 1px solid #000000;
+  border: 2px solid #1C4B11;
+  color:#FFCB0D;
   padding-left: 2px;
   padding-right: 2px;
   border-radius: 10px;
-  display: inline; }
+  display: inline;
+  text-shadow: 1px 3px 1px #000;
+}
