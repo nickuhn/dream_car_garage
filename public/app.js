@@ -21,7 +21,7 @@ $(function() {
       $('#' + tableId).append('<tr id="user-info"><th>Name:</th><th><strong>' + this.firstName + ' ' + this.lastName + '</strong></th><th>Email:</th><th><strong>' + this.email + '</strong></th></tr>');
       $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
       for (var j = 0; j < this.cars.length; j++) {
-        $('#' + tableId).append('<tr><td class="color">' + this.cars[j].color + '</td><td class="year">' + this.cars[j].year + '</td><td class="make">' + this.cars[j].make + '</td><td class="model">' + this.cars[j].model + '</td><td class="cost">' + this.cars[j].cost + '</td></tr>');
+        $('#' + tableId).append('<tr><td class="year">' + this.cars[j].year + '</td><td class="make">' + this.cars[j].make + '</td><td class="model">' + this.cars[j].model + '</td><td class="color">' + this.cars[j].color + '</td><td class="cost">' + this.cars[j].cost + '</td></tr>');
       };
       tableCounter ++;
     }
