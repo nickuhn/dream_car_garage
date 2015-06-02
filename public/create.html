@@ -24,9 +24,9 @@
         </nav>
      </div>
     </header>
-    <aside class="container">
+    <section class="container u-full-width">
     <form class="garageOwnerInfo">
-      <fieldset>
+      <fieldset class="u-full-width">
         <legend class="legend">Garage Owner Info</legend>
         <div class="row">
           <div class="three columns">
@@ -42,13 +42,15 @@
           <input type="email" id="email" class="email u-full-width" placeholder="Email" required="required" />
           </div>
           <div class="three columns">
-          <input type="submit" id="userButton" value="Create Garage" />
+          <button type="submit" class="u-full-width" id="userButton">Create Garage</button>
           </div>
         </div>
       </fieldset>
     </form>
-    </aside>
-    <table class="container u-full-width">
+    </section>
+    <section class="container u-full-width">
+    <div class="row">
+    <table class="twelve columns">
       <tbody id="carTable">
         <thead>
           <tr>
@@ -94,19 +96,16 @@
             <td id="make5"></td>
             <td id="model5"></td>
             <td id="cost5"></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td id="totalCost"></td>
-      </tbody>
-    <section class="container">
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="container u-full-width">
     <form class="newCar">
-      <fieldset>
+      <fieldset class="u-full-width">
+        <legend class="legend">Add New Car</legend>
         <div class="row">
-          <legend class="legend">Add New Car</legend>
           <div class="two columns">
           <label for="color" class="data">Color:</label>
           <input type="text" id="color" class="color u-full-width" placeholder="Color" required="required" />
