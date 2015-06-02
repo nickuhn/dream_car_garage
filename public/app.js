@@ -40,7 +40,7 @@ $(function() {
         newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
         }
       }
-      garagesRef.child(newGarages[0].email).set(JSON.stringify(newGarages[0]));
+      garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(JSON.stringify(newGarages[0]));
       $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
       for(var j = 0; j < 5; j++) {
         removeRow();
