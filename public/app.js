@@ -1,6 +1,5 @@
 $(function() {
 
-
   var garages;
   var tableCounter = 0;
   var ref          = new Firebase('https://dream-car-garage.firebaseio.com/');
@@ -55,7 +54,7 @@ $(function() {
   //event listener for add a car button, if total is going to be over 1m refuses entry.
   $('#add').on('click', function(e) {
     e.preventDefault();
-    var year = $('#year').val();
+    var year  = $('#year').val();
     var check = parseInt(year);
     $('.warning').remove();
       if(1750 < check && check < 2100) {
@@ -65,10 +64,10 @@ $(function() {
         var cost3 = parseInt($('#cost3').text(), 10);
         var cost4 = parseInt($('#cost4').text(), 10);
         var cost5 = parseInt($('#cost5').text(), 10);
-        var costInput = parseInt($('#cost').val(), 10)
+        var costInput = parseInt($('#cost').val(), 10);
         total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
         if(costInput <= 0) {
-          $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>')
+          $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>');
         } else if(total <= 1000000) {
           var color = $('#color').val();
           var make  = $('#make').val();
@@ -99,11 +98,10 @@ $(function() {
 
   //Event Listener for scrolling door
   $('#pictureContainer').click(function() {
-    console.log($( "#pictureContainer img" ).css('top'))
-    if ( $( "#pictureContainer img" ).css('top') === '0px' ) {
-      $( "#pictureContainer img" ).animate({ top: '-1500px'}, 250);
+    if ( $( '#pictureContainer img' ).css('top') === '0px' ) {
+      $( '#pictureContainer img' ).animate({ top: '-1500px'}, 250);
     } else {
-      $( "#pictureContainer img" ).animate({ top: '0px'}, 250);
+      $( '#pictureContainer img' ).animate({ top: '0px'}, 250);
     }
   });
 
@@ -137,9 +135,13 @@ $(function() {
     }
   };
 
+  var clearGarages = function() {
+    $('.car-list table').remove();
+  };
+
   //everytime a new garage is added to firebase this runs creating a displayed garage on the view page
   ref.on('child_added', function(snapshot) {
-    garages = snapshot.val();
+    garages        = snapshot.val();
     var garageList = [];
     for (var key in garages) {
       if (garages.hasOwnProperty(key)) {
@@ -149,6 +151,7 @@ $(function() {
     displayGarage(garageList);
   });
 
+  //Sorts the tables on view page by users First name
   $('#sortFirst').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
@@ -164,31 +167,30 @@ $(function() {
     });
   });
 
+  //Sorts the tables on view page by users Last name
   $('#sortLast').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
     garagesRef.orderByChild('lastName').on('child_added', function(snapshot){
-      garage = snapshot.val();
+      var garage = snapshot.val();
       garageList.push(garage);
     });
     displayGarage(garageList);
   });
 
+  //Sorts the tables on view page by users email address
   $('#sortEmail').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
     garagesRef.orderByChild('email').on('child_added', function(snapshot){
-      garage = snapshot.val();
+      var garage = snapshot.val();
       garageList.push(garage);
     });
     displayGarage(garageList);
   });
 
-  var clearGarages = function() {
-    $('.car-list table').remove();
-  };
 });
 
 
