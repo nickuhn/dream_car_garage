@@ -79,6 +79,7 @@ $(function() {
       $('#cost' + counter).text(cost);
       $('#totalCost').text(total);
       counter ++;
+      $(':input','.newCar').val('');
     } else {
       $('#totalCost').text(total - costInput);
       $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
