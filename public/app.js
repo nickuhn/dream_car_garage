@@ -104,7 +104,7 @@ $(function() {
     for (var i = 0; i < garageList.length; i++) {
       var tableId = 'table' + tableCounter;
       $('.car-list').append('<table class="vehicle-list twelve columns" id=' + tableId + '></table>');
-      $('#' + tableId).append('<tr id="user-info"><th><strong>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</strong></th><th><strong>' + garageList[i].email + '</strong></th></tr>');
+      $('#' + tableId).append('<tr id="user-info"><th>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</th><th>' + garageList[i].email + '</th></tr>');
       $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
       for (var j = 0; j < garageList[i].cars.length; j++) {
         $('#' + tableId).append('<tr><td class="year">' + garageList[i].cars[j].year + '</td><td class="make">' + garageList[i].cars[j].make + '</td><td class="model">' + garageList[i].cars[j].model + '</td><td class="color">' + garageList[i].cars[j].color + '</td><td class="cost">' + garageList[i].cars[j].cost + '</td></tr>');
@@ -117,7 +117,9 @@ $(function() {
   ref.on('child_added', function(snapshot) {
     garages = snapshot.val();
     for (var key in garages) {
-      garageList.push(JSON.parse(garages[key]));
+      if (garages.hasOwnProperty(key)) {
+        garageList.push(JSON.parse(garages[key]));
+      }
     }
     displayGarage();
   });
