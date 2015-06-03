@@ -179,7 +179,7 @@ img {
 #pictureContainer img {
     position: relative;
     top: 0px;
-    transition: top 1s ease-in-out;
+    transition: top .9s ease-in-out;
 }
 .rolledUp {
     top: -1500px;
