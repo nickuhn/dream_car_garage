@@ -69,8 +69,8 @@ $(function() {
     var cost3 = parseInt($('#cost3').text(), 10);
     var cost4 = parseInt($('#cost4').text(), 10);
     var cost5 = parseInt($('#cost5').text(), 10);
-    total = cost1 + cost2 + cost3 + cost4 + cost5 + parseInt($('#cost').val(), 10);
-    $('#totalCost').text(total);
+    var costInput = parseInt($('#cost').val(), 10)
+    total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
     if(total <= 1000000) {
       var color = $('#color').val();
       var year  = $('#year').val();
@@ -82,8 +82,10 @@ $(function() {
       $('#make' + counter).text(make);
       $('#model' + counter).text(model);
       $('#cost' + counter).text(cost);
+      $('#totalCost').text(total);
       counter ++;
     } else {
+      $('#totalCost').text(total - costInput);
       $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
     }
   });
@@ -96,6 +98,7 @@ $(function() {
 
   //clears the most recently populated row on the create page.
   var removeRow = function () {
+    if(counter > 1) {
     $('#addWarning').remove();
     counter --;
     var totalCost = parseInt($('#totalCost').text());
@@ -106,6 +109,7 @@ $(function() {
     $('#make' + counter).text('');
     $('#model' + counter).text('');
     $('#cost' + counter).text(0);
+  }
   };
 
   //displays a garage table on the view page
