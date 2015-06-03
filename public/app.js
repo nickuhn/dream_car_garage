@@ -1,4 +1,14 @@
 $(function() {
+
+  $('#pictureContainer').click(function() {
+    console.log($( "#pictureContainer img" ).css('top'))
+    if ( $( "#pictureContainer img" ).css('top') === '0px' ) {
+      $( "#pictureContainer img" ).animate({ top: '-1500px'}, 1000);
+    } else {
+      $( "#pictureContainer img" ).animate({ top: '0px'}, 1000);
+    }
+  });
+
   var garages;
   var garageList   = [];
   var tableCounter = 0;
