@@ -10,7 +10,6 @@ $(function() {
   });
 
   var garages;
-  var garageList   = [];
   var tableCounter = 0;
   var ref          = new Firebase('https://dream-car-garage.firebaseio.com/');
   var garagesRef   = ref.child('garage');
@@ -50,7 +49,7 @@ $(function() {
         newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
         }
       }
-      garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(JSON.stringify(newGarages[0]));
+      garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
       $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
       for(var j = 0; j < 5; j++) {
         removeRow();
@@ -110,11 +109,11 @@ $(function() {
   };
 
   //displays a garage table on the view page
-  var displayGarage = function() {
+  var displayGarage = function(garageList) {
     for (var i = 0; i < garageList.length; i++) {
       var tableId = 'table' + tableCounter;
       $('.car-list').append('<table class="vehicle-list twelve columns" id=' + tableId + '></table>');
-      $('#' + tableId).append('<tr id="user-info"><th><strong>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</strong></th><th><strong>' + garageList[i].email + '</strong></th></tr>');
+      $('#' + tableId).append('<tr id="user-info"><th>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</th><th>' + garageList[i].email + '</th></tr>');
       $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
       for (var j = 0; j < garageList[i].cars.length; j++) {
         $('#' + tableId).append('<tr><td class="year">' + garageList[i].cars[j].year + '</td><td class="make">' + garageList[i].cars[j].make + '</td><td class="model">' + garageList[i].cars[j].model + '</td><td class="color">' + garageList[i].cars[j].color + '</td><td class="cost">' + garageList[i].cars[j].cost + '</td></tr>');
@@ -126,12 +125,55 @@ $(function() {
   //everytime a new garage is added to firebase this runs creating a displayed garage on the view page
   ref.on('child_added', function(snapshot) {
     garages = snapshot.val();
+    var garageList = [];
     for (var key in garages) {
-      garageList.push(JSON.parse(garages[key]));
+      if (garages.hasOwnProperty(key)) {
+        garageList.push(garages[key]);
+      }
     }
-    displayGarage();
+    displayGarage(garageList);
   });
 
+  $('#sortFirst').on('click', function(e) {
+    e.preventDefault();
+    var garageList = [];
+    clearGarages();
+    ref.orderByChild('firstName').on('child_added', function(snapshot){
+      garages = snapshot.val();
+      for (var key in garages) {
+        if (garages.hasOwnProperty(key)) {
+          garageList.push(garages[key]);
+        }
+      }
+    displayGarage(garageList);
+    });
+  });
+
+  $('#sortLast').on('click', function(e) {
+    e.preventDefault();
+    var garageList = [];
+    clearGarages();
+    garagesRef.orderByChild('lastName').on('child_added', function(snapshot){
+      garage = snapshot.val();
+      garageList.push(garage);
+    });
+    displayGarage(garageList);
+  });
+
+  $('#sortEmail').on('click', function(e) {
+    e.preventDefault();
+    var garageList = [];
+    clearGarages();
+    garagesRef.orderByChild('email').on('child_added', function(snapshot){
+      garage = snapshot.val();
+      garageList.push(garage);
+    });
+    displayGarage(garageList);
+  });
+
+  var clearGarages = function() {
+    $('.car-list table').remove();
+  };
 });
 
 
