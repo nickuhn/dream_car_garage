@@ -131,6 +131,7 @@ tr:hover td{
   border-radius: 1px;
   text-align: center;
   padding: 7px;
+  text-shadow: 0 0 0 #000;
 }
 
 .success a {
