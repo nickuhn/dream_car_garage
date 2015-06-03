@@ -55,35 +55,40 @@ $(function() {
   //event listener for add a car button, if total is going to be over 1m refuses entry.
   $('#add').on('click', function(e) {
     e.preventDefault();
+    var year = $('#year').val();
+    var check = parseInt(year);
     $('.warning').remove();
-    var total = 0;
-    var cost1 = parseInt($('#cost1').text(), 10);
-    var cost2 = parseInt($('#cost2').text(), 10);
-    var cost3 = parseInt($('#cost3').text(), 10);
-    var cost4 = parseInt($('#cost4').text(), 10);
-    var cost5 = parseInt($('#cost5').text(), 10);
-    var costInput = parseInt($('#cost').val(), 10)
-    total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
-    if(costInput <= 0) {
-      $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>')
-    } else if(total <= 1000000) {
-      var color = $('#color').val();
-      var year  = $('#year').val();
-      var make  = $('#make').val();
-      var model = $('#model').val();
-      var cost  = $('#cost').val();
-      $('#color' + counter).text(color);
-      $('#year' + counter).text(year);
-      $('#make' + counter).text(make);
-      $('#model' + counter).text(model);
-      $('#cost' + counter).text(cost);
-      $('#totalCost').text(total);
-      counter ++;
-      $(':input','.newCar').val('');
-    } else {
-      $('#totalCost').text(total - costInput);
-      $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
-    }
+      if(1750 < check && check < 2100) {
+        var total = 0;
+        var cost1 = parseInt($('#cost1').text(), 10);
+        var cost2 = parseInt($('#cost2').text(), 10);
+        var cost3 = parseInt($('#cost3').text(), 10);
+        var cost4 = parseInt($('#cost4').text(), 10);
+        var cost5 = parseInt($('#cost5').text(), 10);
+        var costInput = parseInt($('#cost').val(), 10)
+        total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
+        if(costInput <= 0) {
+          $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>')
+        } else if(total <= 1000000) {
+          var color = $('#color').val();
+          var make  = $('#make').val();
+          var model = $('#model').val();
+          var cost  = $('#cost').val();
+          $('#color' + counter).text(color);
+          $('#year' + counter).text(year);
+          $('#make' + counter).text(make);
+          $('#model' + counter).text(model);
+          $('#cost' + counter).text(cost);
+          $('#totalCost').text(total);
+          counter ++;
+          $(':input','.newCar').val('');
+        } else {
+          $('#totalCost').text(total - costInput);
+          $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
+        }
+      } else {
+        $('#add').after('<p id="yearWarning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
+      }
   });
 
   //event listener for remove last car button
