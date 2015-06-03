@@ -1,13 +1,5 @@
 $(function() {
 
-  $('#pictureContainer').click(function() {
-    console.log($( "#pictureContainer img" ).css('top'))
-    if ( $( "#pictureContainer img" ).css('top') === '0px' ) {
-      $( "#pictureContainer img" ).animate({ top: '-1500px'}, 250);
-    } else {
-      $( "#pictureContainer img" ).animate({ top: '0px'}, 250);
-    }
-  });
 
   var garages;
   var tableCounter = 0;
@@ -38,7 +30,7 @@ $(function() {
   //event listener for the create garage button, clears table and stores garage in firebase
   $('#userButton').on('click', function(e) {
     e.preventDefault();
-    $('#createWarning').remove();
+    $('.warning').remove();
     if ($('#color1').text() !== '') {
       var firstName = $('#firstName').val();
       var lastName  = $('#lastName').val();
@@ -63,6 +55,7 @@ $(function() {
   //event listener for add a car button, if total is going to be over 1m refuses entry.
   $('#add').on('click', function(e) {
     e.preventDefault();
+    $('.warning').remove();
     var total = 0;
     var cost1 = parseInt($('#cost1').text(), 10);
     var cost2 = parseInt($('#cost2').text(), 10);
@@ -71,7 +64,9 @@ $(function() {
     var cost5 = parseInt($('#cost5').text(), 10);
     var costInput = parseInt($('#cost').val(), 10)
     total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
-    if(total <= 1000000) {
+    if(costInput <= 0) {
+      $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>')
+    } else if(total <= 1000000) {
       var color = $('#color').val();
       var year  = $('#year').val();
       var make  = $('#make').val();
@@ -96,10 +91,20 @@ $(function() {
     removeRow();
   });
 
+  //Event Listener for scrolling door
+  $('#pictureContainer').click(function() {
+    console.log($( "#pictureContainer img" ).css('top'))
+    if ( $( "#pictureContainer img" ).css('top') === '0px' ) {
+      $( "#pictureContainer img" ).animate({ top: '-1500px'}, 250);
+    } else {
+      $( "#pictureContainer img" ).animate({ top: '0px'}, 250);
+    }
+  });
+
   //clears the most recently populated row on the create page.
   var removeRow = function () {
     if(counter > 1) {
-    $('#addWarning').remove();
+    $('.warning').remove();
     counter --;
     var totalCost = parseInt($('#totalCost').text());
     var cost      = parseInt($('#cost' + counter).text());
