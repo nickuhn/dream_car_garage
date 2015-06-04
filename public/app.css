@@ -49,6 +49,14 @@ button:active {
   background-color: #EAA023;
 }
 
+button:hover {
+  color: silver;
+}
+
+button:focus {
+  color: silver;
+}
+
 .Active {
   background-color: #FFCB0D;
   color: #1C4B11;
@@ -56,10 +64,6 @@ button:active {
 
 button a {
   text-decoration: none;
-  color: #silver;
-}
-
-button:hover {
   color: silver;
 }
 
