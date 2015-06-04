@@ -27,12 +27,12 @@ $(function() {
   };
 
   // event listener for the create garage button, clears table and stores garage in firebase
-  $('#userButton').on('click', function(e) {
+  $('#user-button').on('click', function(e) {
     e.preventDefault();
     $('.warning').remove();
     if ($('#color1').text() !== '') {
-      var firstName = $('#firstName').val();
-      var lastName  = $('#lastName').val();
+      var firstName = $('#first-name').val();
+      var lastName  = $('#last-name').val();
       var email     = $('#email').val();
       newGarages.push(new Garage(firstName, lastName, email));
       for(var i = 1; i <= 5; i++) {
@@ -41,13 +41,13 @@ $(function() {
         }
       }
       garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
-      $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
+      $('#user-button').after('<p id="create-warning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
       for(var j = 0; j < 5; j++) {
         removeRow();
       }
-      $('#totalCost').text(0);
+      $('#total-cost').text(0);
     } else {
-      $('#userButton').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
+      $('#user-button').after('<p id="create-warning" class="warning">Please enter at least one car</p>');
     }
   });
 
@@ -78,15 +78,15 @@ $(function() {
           $('#make' + counter).text(make);
           $('#model' + counter).text(model);
           $('#cost' + counter).text(cost);
-          $('#totalCost').text(total);
+          $('#total-cost').text(total);
           counter ++;
-          $(':input','.newCar').val('');
+          $(':input','.new-car').val('');
         } else {
-          $('#totalCost').text(total - costInput);
-          $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
+          $('#total-cost').text(total - costInput);
+          $('#add').after('<p id="add-warning" class="warning">Total Must Be Less Than $1,000,000</p>');
         }
       } else {
-        $('#add').after('<p id="yearWarning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
+        $('#add').after('<p id="year-warning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
       }
   });
 
@@ -97,11 +97,11 @@ $(function() {
   });
 
   //Event Listener for scrolling door
-  $('#pictureContainer').click(function() {
-    if ( $( '#pictureContainer img' ).css('top') === '0px' ) {
-      $( '#pictureContainer img' ).animate({ top: '-1500px'}, 250);
+  $('#picture-container').click(function() {
+    if ( $( '#picture-container img' ).css('top') === '0px' ) {
+      $( '#picture-container img' ).animate({ top: '-1500px'}, 250);
     } else {
-      $( '#pictureContainer img' ).animate({ top: '0px'}, 250);
+      $( '#picture-container img' ).animate({ top: '0px'}, 250);
     }
   });
 
@@ -110,9 +110,9 @@ $(function() {
     if(counter > 1) {
     $('.warning').remove();
     counter --;
-    var totalCost = parseInt($('#totalCost').text());
+    var totalCost = parseInt($('#total-cost').text());
     var cost      = parseInt($('#cost' + counter).text());
-    $('#totalCost').text(totalCost - cost);
+    $('#total-cost').text(totalCost - cost);
     $('#color' + counter).text('');
     $('#year' + counter).text('');
     $('#make' + counter).text('');
@@ -152,7 +152,7 @@ $(function() {
   });
 
   //Sorts the tables on view page by users First name
-  $('#sortFirst').on('click', function(e) {
+  $('#sort-first').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
@@ -168,7 +168,7 @@ $(function() {
   });
 
   //Sorts the tables on view page by users Last name
-  $('#sortLast').on('click', function(e) {
+  $('#sort-last').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
@@ -180,7 +180,7 @@ $(function() {
   });
 
   //Sorts the tables on view page by users email address
-  $('#sortEmail').on('click', function(e) {
+  $('#sort-email').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
@@ -192,7 +192,7 @@ $(function() {
   });
 
   //Click event to retrieve all ready saved garages for editing.
-  $('#retrieveButton').on('click', function(e) {
+  $('#retrieve-button').on('click', function(e) {
     e.preventDefault();
     $('.warning').remove();
     $('.success').remove();
@@ -200,11 +200,11 @@ $(function() {
     for(var j = 0; j < removeCount; j++) {
       removeRow();
     }
-    $('#totalCost').text(0);
+    $('#total-cost').text(0);
     garagesRef.on('value', function(snapshot){
       var gar = snapshot.val();
       var totaledCost = 0;
-      var fn = $('#firstName').val()+$('#lastName').val();
+      var fn = $('#first-name').val()+$('#last-name').val();
       if (gar.hasOwnProperty(fn)) {
         var carsPulled = gar[fn].cars;
         for(var i = 0; i < carsPulled.length; i++) {
@@ -218,7 +218,7 @@ $(function() {
           }
         }
       }
-      $('#totalCost').text(totaledCost);
+      $('#total-cost').text(totaledCost);
     });
   });
 
