@@ -98,12 +98,7 @@ $(function() {
         $('#add').after($('<p>')
                  .attr({ 'id': 'year-warning', 'class': 'warning' })
                  .text('Year must be 4 digits between 1800 to 2100'))
-          $('#total-cost').text(total - costInput);
-          $('#add').after('<p id="add-warning" class="warning">Total Must Be Less Than $1,000,000</p>');
-        }
-      } else {
-        $('#add').after('<p id="year-warning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
-      }
+    }
   });
 
   //event listener for remove last car button
