@@ -120,7 +120,7 @@
         <fieldset class="u-full-width">
           <legend class="legend">Garage Owner Info</legend>
           <div class="row">
-            <div class="three columns">
+            <div class="three columns off-set-by three columns">
               <label for="first-name" class="data">First Name:</label>
               <input type="text" id="first-name" class="first-name u-full-width" placeholder="First Name" required="required" />
             </div>
@@ -129,14 +129,18 @@
               <input type="text" id="last-name" class="last-name u-full-width" placeholder="Last Name" required="required" />
             </div>
             <div class="three columns">
+              <button type="button" class="u-full-width" id="user-button">Create Garage</button>
+            </div>
+          <div class="row">
+            <div class="three columns">
               <label for="email" class="data">Email:</label>
               <input type="email" id="email" class="email u-full-width" placeholder="Email" required="required" />
             </div>
             <div class="three columns">
-              <button type="button" class="u-full-width" id="user-button">Create Garage</button>
+              <label for="password" class="data">Password:</label>
+              <input type="password" id="user-pw" class="user-pw u-full-width" placeholder="Password" required="required" />
             </div>
-          <div class="row">
-            <div id ="retrieve" class="eight columns offset-by-one column">
+            <div id ="retrieve" class="three columns">
               <p>Once you've created your garage you can retrieve it by entering your first and last name.</p>
             </div>
             <div class="three columns">
