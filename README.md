@@ -5,7 +5,7 @@ Welcome to Dream Car Garage. You just won $1 Million dollars and get to spend it
 Pick your cars and compare your list to that of your friends.
 
 Web App live on heroku:
-[https://pure-sands-4495.herokuapp.com/create.html]
+[https://dreamcargarage.herokuapp.com/index.html]
 
 ##About the Project
 
