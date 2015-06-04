@@ -90,7 +90,7 @@ th {
   padding-right: 10px
 }
 
-#user-info th, td, th{
+.user-info th, td, th{
   color: #FFCB0D;
   background-color: #1C4B11;
   text-align: center;
@@ -98,7 +98,7 @@ th {
   border-collapse: collapse;
 }
 
-#user-info th {
+.user-info th {
   background-color: #FFCB0D;
   color: #014225;
   font-weight: bolder;
