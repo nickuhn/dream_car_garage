@@ -57,7 +57,7 @@ button:focus {
   color: silver;
 }
 
-.Active {
+.active {
   background-color: #FFCB0D;
   color: #1C4B11;
 }
@@ -81,7 +81,7 @@ th {
   font-family: 'PT Sans', sans-serif;
 }
 
-#userButton {
+#user-button {
   margin-top: 29px;
 }
 
@@ -94,7 +94,7 @@ th {
   padding-right: 10px
 }
 
-#user-info th, td, th{
+.user-info th, td, th{
   color: #FFCB0D;
   background-color: #1C4B11;
   text-align: center;
@@ -102,7 +102,7 @@ th {
   border-collapse: collapse;
 }
 
-#user-info th {
+.user-info th {
   background-color: #FFCB0D;
   color: #014225;
   font-weight: bolder;
@@ -152,7 +152,7 @@ fieldset {
   text-shadow: 1px 3px 1px #000;
 }
 
-#mainContent {
+#main-content {
   background-color: lightgrey;
   opacity: .7;
   padding: 10px;
@@ -170,7 +170,7 @@ img {
   width: 877px;
 }
 
-#pictureContainer {
+#picture-container {
   position: absolute;
   height: 400px;
   overflow: hidden;
@@ -178,25 +178,20 @@ img {
   opacity: 1;
 }
 
-#pictureContainer img {
+#picture-container img {
     position: relative;
     top: 0px;
     transition: top .9s ease-in-out;
-}
-
-.rolledUp {
-    top: -1500px;
 }
 
 #cost5 {
   padding-right: 1px;
 }
 
-#sortEmail {
+#sort-email {
   margin-bottom: 40px;
 }
 
 #remove {
   font-size: 1.3rem;
 }
-
