@@ -19,8 +19,8 @@ $(function() {
     this.firstName = firstName;
     this.lastName  = lastName;
     this.email     = email;
-    this.cars      = [];
     this.password  = password;
+    this.cars      = [];
   }
 
   Garage.prototype.addCars = function(color, year, make, model, cost){
