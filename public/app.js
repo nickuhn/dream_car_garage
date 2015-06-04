@@ -26,7 +26,7 @@ $(function() {
     this.cars.push(new Car(color, year, make, model, cost));
   };
 
-  //event listener for the create garage button, clears table and stores garage in firebase
+  // event listener for the create garage button, clears table and stores garage in firebase
   $('#userButton').on('click', function(e) {
     e.preventDefault();
     $('.warning').remove();
@@ -190,6 +190,38 @@ $(function() {
     });
     displayGarage(garageList);
   });
+
+  //Click event to retrieve all ready saved garages for editing.
+  $('#retrieveButton').on('click', function(e) {
+    e.preventDefault();
+    $('.warning').remove();
+    $('.success').remove();
+    var removeCount = counter;
+    for(var j = 0; j < removeCount; j++) {
+      removeRow();
+    }
+    $('#totalCost').text(0);
+    garagesRef.on('value', function(snapshot){
+      var gar = snapshot.val();
+      var totaledCost = 0;
+      var fn = $('#firstName').val()+$('#lastName').val();
+      if (gar.hasOwnProperty(fn)) {
+        var carsPulled = gar[fn].cars;
+        for(var i = 0; i < carsPulled.length; i++) {
+          for (var prop in carsPulled[i]) {
+            var value = carsPulled[i][prop];
+            $('#' + prop + (i+1)).text(value);
+            if (prop === 'cost') {
+              totaledCost += parseInt(value);
+              counter ++;
+            }
+          }
+        }
+      }
+      $('#totalCost').text(totaledCost);
+    });
+  });
+
 
 });
 
