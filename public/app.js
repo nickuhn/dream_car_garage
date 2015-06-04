@@ -41,13 +41,13 @@ $(function() {
         }
       }
       garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
-      $('#user-button').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
+      $('#user-button').after('<p id="create-warning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
       for(var j = 0; j < 5; j++) {
         removeRow();
       }
       $('#total-cost').text(0);
     } else {
-      $('#user-button').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
+      $('#user-button').after('<p id="create-warning" class="warning">Please enter at least one car</p>');
     }
   });
 
@@ -83,10 +83,10 @@ $(function() {
           $(':input','.new-car').val('');
         } else {
           $('#total-cost').text(total - costInput);
-          $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
+          $('#add').after('<p id="add-warning" class="warning">Total Must Be Less Than $1,000,000</p>');
         }
       } else {
-        $('#add').after('<p id="yearWarning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
+        $('#add').after('<p id="year-warning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
       }
   });
 
@@ -152,7 +152,7 @@ $(function() {
   });
 
   //Sorts the tables on view page by users First name
-  $('#sortFirst').on('click', function(e) {
+  $('#sort-first').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
@@ -168,7 +168,7 @@ $(function() {
   });
 
   //Sorts the tables on view page by users Last name
-  $('#sortLast').on('click', function(e) {
+  $('#sort-last').on('click', function(e) {
     e.preventDefault();
     var garageList = [];
     clearGarages();
@@ -192,7 +192,7 @@ $(function() {
   });
 
   //Click event to retrieve all ready saved garages for editing.
-  $('#retrieveButton').on('click', function(e) {
+  $('#retrieve-button').on('click', function(e) {
     e.preventDefault();
     $('.warning').remove();
     $('.success').remove();
@@ -204,7 +204,7 @@ $(function() {
     garagesRef.on('value', function(snapshot){
       var gar = snapshot.val();
       var totaledCost = 0;
-      var fn = $('#firstName').val()+$('#last-name').val();
+      var fn = $('#first-name').val()+$('#last-name').val();
       if (gar.hasOwnProperty(fn)) {
         var carsPulled = gar[fn].cars;
         for(var i = 0; i < carsPulled.length; i++) {
