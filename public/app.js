@@ -80,8 +80,8 @@ $(function() {
         var costInput = parseInt($('#cost').val(), 10);
         total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
         if(costInput <= 0) {
-          $('#add').after($('<p>')
-                   .attr({ 'id': 'costWarning', 'class': 'warning two columns' })
+          $('#remove').after($('<p>')
+                   .attr({ 'id': 'costWarning', 'class': 'warning' })
                    .text('Car cost must be greater than zero'));
         } else if(total <= 1000000) {
           var color = $('#color').val();
@@ -98,13 +98,13 @@ $(function() {
           $(':input','.new-car').val('');
         } else {
           $('#total-cost').text(total - costInput);
-          $('#add').after($('<p>')
-                   .attr({ 'id': 'add-warning', 'class': 'warning two columns' })
+          $('#remove').after($('<p>')
+                   .attr({ 'id': 'add-warning', 'class': 'warning' })
                    .text('Total Must Be Less Than $1,000,000'));
         }
       } else {
-        $('#add').after($('<p>')
-                 .attr({ 'id': 'year-warning', 'class': 'warning two columns' })
+        $('#remove').after($('<p>')
+                 .attr({ 'id': 'year-warning', 'class': 'warning' })
                  .text('Year must be 4 digits between 1800 to 2100'));
     }
   });
