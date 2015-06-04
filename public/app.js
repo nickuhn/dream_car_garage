@@ -45,7 +45,7 @@ $(function() {
         }
         garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
         $('#retrieve-button').after($('<p>')
-                     .attr({ 'id': 'create-success', 'class': 'success' })
+                     .attr({ 'id': 'create-success', 'class': 'success two columns' })
                      .text('Garage successfully created.')
                      .html('<a href="view.html"> Click here to view garages! </a>'));
         for(var j = 0; j < 5; j++) {
@@ -54,7 +54,7 @@ $(function() {
         $('#total-cost').text(0);
       } else {
         $('#retrieve-button').after($('<p>')
-                   .attr({ 'id': 'create-warning', 'class': 'warning' })
+                   .attr({ 'id': 'create-warning', 'class': 'warning two columns' })
                    .text('Please enter a password.'));
       }
     } else {
@@ -81,7 +81,7 @@ $(function() {
         total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
         if(costInput <= 0) {
           $('#add').after($('<p>')
-                   .attr({ 'id': 'costWarning', 'class': 'warning' })
+                   .attr({ 'id': 'costWarning', 'class': 'warning two columns' })
                    .text('Car cost must be greater than zero'));
         } else if(total <= 1000000) {
           var color = $('#color').val();
@@ -99,12 +99,12 @@ $(function() {
         } else {
           $('#total-cost').text(total - costInput);
           $('#add').after($('<p>')
-                   .attr({ 'id': 'add-warning', 'class': 'warning' })
+                   .attr({ 'id': 'add-warning', 'class': 'warning two columns' })
                    .text('Total Must Be Less Than $1,000,000'));
         }
       } else {
         $('#add').after($('<p>')
-                 .attr({ 'id': 'year-warning', 'class': 'warning' })
+                 .attr({ 'id': 'year-warning', 'class': 'warning two columns' })
                  .text('Year must be 4 digits between 1800 to 2100'));
     }
   });
@@ -259,7 +259,7 @@ $(function() {
           }
         } else {
           $('#retrieve-button').after($('<p>')
-                   .attr({ 'id': 'create-warning', 'class': 'warning' })
+                   .attr({ 'id': 'create-warning', 'class': 'warning two columns' })
                    .text('Password is incorrect'));
         }
       }
