@@ -44,7 +44,7 @@ $(function() {
           }
         }
         garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
-        $('#user-button').after($('<p>')
+        $('#retrieve-button').after($('<p>')
                      .attr({ 'id': 'create-success', 'class': 'success' })
                      .text('Garage successfully created.')
                      .html('<a href="view.html"> Click here to view garages! </a>'));
@@ -53,13 +53,13 @@ $(function() {
         }
         $('#total-cost').text(0);
       } else {
-        $('#user-button').after($('<p>')
+        $('#retrieve-button').after($('<p>')
                    .attr({ 'id': 'create-warning', 'class': 'warning' })
                    .text('Please enter a password.'));
       }
     } else {
-      $('#user-button').after($('<p>')
-                   .attr({ 'id': 'create-warning', 'class': 'warning' })
+      $('#retrieve-button').after($('<p>')
+                   .attr({ 'id': 'create-warning', 'class': 'warning two columns' })
                    .text('Please enter at least one car'));
     }
   });
@@ -258,7 +258,7 @@ $(function() {
             }
           }
         } else {
-          $('#user-button').after($('<p>')
+          $('#retrieve-button').after($('<p>')
                    .attr({ 'id': 'create-warning', 'class': 'warning' })
                    .text('Password is incorrect'));
         }
