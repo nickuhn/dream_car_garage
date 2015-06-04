@@ -15,11 +15,12 @@ $(function() {
     this.cost  = cost;
   }
 
-  function Garage(firstName, lastName, email) {
+  function Garage(firstName, lastName, email, password) {
     this.firstName = firstName;
     this.lastName  = lastName;
     this.email     = email;
     this.cars      = [];
+    this.password  = password;
   }
 
   Garage.prototype.addCars = function(color, year, make, model, cost){
@@ -31,24 +32,31 @@ $(function() {
     e.preventDefault();
     $('.warning').remove();
     if ($('#color1').text() !== '') {
-      var firstName = $.trim($('#first-name').val());
-      var lastName  = $.trim($('#last-name').val());
-      var email     = $.trim($('#email').val());
-      newGarages.push(new Garage(firstName, lastName, email));
-      for(var i = 1; i <= 5; i++) {
-        if($('#color' + i).text() !== ''){
-        newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
+      if($('#user-pw').val() !== '') {
+        var firstName = $.trim($('#first-name').val());
+        var lastName  = $.trim($('#last-name').val());
+        var email     = $.trim($('#email').val());
+        var password  = $.trim($('#user-pw').val());
+        newGarages.push(new Garage(firstName, lastName, email, password));
+        for(var i = 1; i <= 5; i++) {
+          if($('#color' + i).text() !== ''){
+          newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
+          }
         }
-      }
-      garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
-      $('#user-utton').after($('<p>')
+        garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
+        $('#user-button').after($('<p>')
+                     .attr({ 'id': 'create-success', 'class': 'success' })
+                     .text('Garage successfully created.')
+                     .html('<a href="view.html"> Click here to view garages! </a>'));
+        for(var j = 0; j < 5; j++) {
+          removeRow();
+        }
+        $('#total-cost').text(0);
+      } else {
+        $('#user-button').after($('<p>')
                    .attr({ 'id': 'create-warning', 'class': 'warning' })
-                   .text('Please enter at least one car')
-                   .html('<a href="view.html"> Click here to view garages! </a>'));
-      for(var j = 0; j < 5; j++) {
-        removeRow();
+                   .text('Please enter a password.'));
       }
-      $('#total-cost').text(0);
     } else {
       $('#user-button').after($('<p>')
                    .attr({ 'id': 'create-warning', 'class': 'warning' })
@@ -224,6 +232,7 @@ $(function() {
     e.preventDefault();
     var firstName = $.trim($('#first-name').val());
     var lastName  = $.trim($('#last-name').val());
+    var password  = $.trim($('#user-pw').val());
     $('.warning').remove();
     $('.success').remove();
     var removeCount = counter;
@@ -235,18 +244,23 @@ $(function() {
       var gar = snapshot.val();
       var totaledCost = 0;
       var fn = firstName+lastName;
-      console.log(fn);
       if (gar.hasOwnProperty(fn)) {
-        var carsPulled = gar[fn].cars;
-        for(var i = 0; i < carsPulled.length; i++) {
-          for (var prop in carsPulled[i]) {
-            var value = carsPulled[i][prop];
-            $('#' + prop + (i+1)).text(value);
-            if (prop === 'cost') {
-              totaledCost += parseInt(value);
-              counter ++;
+        if (gar[fn].password === password) {
+          var carsPulled = gar[fn].cars;
+          for(var i = 0; i < carsPulled.length; i++) {
+            for (var prop in carsPulled[i]) {
+              var value = carsPulled[i][prop];
+              $('#' + prop + (i+1)).text(value);
+              if (prop === 'cost') {
+                totaledCost += parseInt(value);
+                counter ++;
+              }
             }
           }
+        } else {
+          $('#user-button').after($('<p>')
+                   .attr({ 'id': 'create-warning', 'class': 'warning' })
+                   .text('Password is incorrect'));
         }
       }
       $('#total-cost').text(totaledCost);
