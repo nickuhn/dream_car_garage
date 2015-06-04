@@ -41,13 +41,18 @@ $(function() {
         }
       }
       garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
-      $('#userButton').after('<p id="createWarning" class="success">Your garage was successfully submitted! <a href="view.html"> Click here to view garages! </a></p>');
+      $('#userButton').after($('<p>')
+                   .attr({ 'id': 'createWarning', 'class': 'warning' })
+                   .text('Please enter at least one car')
+                   .html('<a href="view.html"> Click here to view garages! </a>'));
       for(var j = 0; j < 5; j++) {
         removeRow();
       }
       $('#totalCost').text(0);
     } else {
-      $('#userButton').after('<p id="createWarning" class="warning">Please enter at least one car</p>');
+      $('#userButton').after($('<p>')
+                   .attr({ 'id': 'createWarning', 'class': 'warning' })
+                   .text('Please enter at least one car'));
     }
   });
 
@@ -67,7 +72,9 @@ $(function() {
         var costInput = parseInt($('#cost').val(), 10);
         total = cost1 + cost2 + cost3 + cost4 + cost5 + costInput;
         if(costInput <= 0) {
-          $('#add').after('<p id="costWarning" class="warning">Car cost must be greater than zero</p>');
+          $('#add').after($('<p>')
+                   .attr({ 'id': 'costWarning', 'class': 'warning' })
+                   .text('Car cost must be greater than zero'));
         } else if(total <= 1000000) {
           var color = $('#color').val();
           var make  = $('#make').val();
@@ -83,10 +90,14 @@ $(function() {
           $(':input','.newCar').val('');
         } else {
           $('#totalCost').text(total - costInput);
-          $('#add').after('<p id="addWarning" class="warning">Total Must Be Less Than $1,000,000</p>');
+          $('#add').after($('<p>')
+                   .attr({ 'id': 'addWarning', 'class': 'warning' })
+                   .text('Total Must Be Less Than $1,000,000'));
         }
       } else {
-        $('#add').after('<p id="yearWarning" class="warning">Year must be 4 digits between 1800 to 2100</p>');
+        $('#add').after($('<p>')
+                 .attr({ 'id': 'yearWarning', 'class': 'warning' })
+                 .text('Year must be 4 digits between 1800 to 2100'))
       }
   });
 
@@ -125,11 +136,28 @@ $(function() {
   var displayGarage = function(garageList) {
     for (var i = 0; i < garageList.length; i++) {
       var tableId = 'table' + tableCounter;
-      $('.car-list').append('<table class="vehicle-list twelve columns" id=' + tableId + '></table>');
-      $('#' + tableId).append('<tr id="user-info"><th>' + garageList[i].firstName + ' ' + garageList[i].lastName + '</th><th>' + garageList[i].email + '</th></tr>');
-      $('#' + tableId).append('<tr><th>Year</th><th>Make</th><th>Model</th><th>Color</th><th>Cost</th></tr>');
+      $('.car-list').append($('<table>')
+                      .attr('class', 'vehicle-list twelve columns')
+                      .attr('id', tableId));
+      $('#' + tableId).append($('<tr>').attr('class', 'user-info')
+                      .append($('<th>').text(garageList[i].firstName))
+                      .append($('<th>').text(garageList[i].lastName))
+                      .append($('<th>').text(garageList[i].email)));
+      $('#' + tableId).find('tbody').append($('<tr>')
+                                   .append($('<th>').text('Year'))
+                                   .append($('<th>').text('Make'))
+                                   .append($('<th>').text('Model'))
+                                   .append($('<th>').text('Color'))
+                                   .append($('<th>').text('Cost'))
+                                   );
       for (var j = 0; j < garageList[i].cars.length; j++) {
-        $('#' + tableId).append('<tr><td class="year">' + garageList[i].cars[j].year + '</td><td class="make">' + garageList[i].cars[j].make + '</td><td class="model">' + garageList[i].cars[j].model + '</td><td class="color">' + garageList[i].cars[j].color + '</td><td class="cost">' + garageList[i].cars[j].cost + '</td></tr>');
+        $('#' + tableId).find('tbody').append($('<tr>')
+                                      .append($('<td>').text(garageList[i].cars[j].year))
+                                      .append($('<td>').text(garageList[i].cars[j].make))
+                                      .append($('<td>').text(garageList[i].cars[j].model))
+                                      .append($('<td>').text(garageList[i].cars[j].color))
+                                      .append($('<td>').text(garageList[i].cars[j].cost))
+                                      );
       }
       tableCounter ++;
     }
@@ -221,7 +249,6 @@ $(function() {
       $('#totalCost').text(totaledCost);
     });
   });
-
 
 });
 
