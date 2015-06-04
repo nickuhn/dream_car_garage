@@ -45,8 +45,8 @@ $(function() {
         }
         garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
         $('#user-button').after($('<p>')
-                     .attr({ 'id': 'create-warning', 'class': 'warning' })
-                     .text('Please enter at least one car')
+                     .attr({ 'id': 'create-success', 'class': 'success' })
+                     .text('Garage successfully created.')
                      .html('<a href="view.html"> Click here to view garages! </a>'));
         for(var j = 0; j < 5; j++) {
           removeRow();
