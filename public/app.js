@@ -31,9 +31,9 @@ $(function() {
     e.preventDefault();
     $('.warning').remove();
     if ($('#color1').text() !== '') {
-      var firstName = $('#first-name').val();
-      var lastName  = $('#last-name').val();
-      var email     = $('#email').val();
+      var firstName = $.trim($('#first-name').val());
+      var lastName  = $.trim($('#last-name').val());
+      var email     = $.trim($('#email').val());
       newGarages.push(new Garage(firstName, lastName, email));
       for(var i = 1; i <= 5; i++) {
         if($('#color' + i).text() !== ''){
@@ -222,6 +222,8 @@ $(function() {
   //Click event to retrieve all ready saved garages for editing.
   $('#retrieve-button').on('click', function(e) {
     e.preventDefault();
+    var firstName = $.trim($('#first-name').val());
+    var lastName  = $.trim($('#last-name').val());
     $('.warning').remove();
     $('.success').remove();
     var removeCount = counter;
@@ -232,7 +234,8 @@ $(function() {
     garagesRef.on('value', function(snapshot){
       var gar = snapshot.val();
       var totaledCost = 0;
-      var fn = $('#first-name').val()+$('#last-name').val();
+      var fn = firstName+lastName;
+      console.log(fn);
       if (gar.hasOwnProperty(fn)) {
         var carsPulled = gar[fn].cars;
         for(var i = 0; i < carsPulled.length; i++) {
