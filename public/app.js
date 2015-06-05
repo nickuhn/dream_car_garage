@@ -105,7 +105,7 @@ $(function() {
       } else {
         $('#remove').after($('<p>')
                  .attr({ 'id': 'year-warning', 'class': 'warning' })
-                 .text('Year must be 4 digits between 1800 to 2100'));
+                 .text('Year must be 4 digits between 1750 to 2100'));
     }
   });
 
