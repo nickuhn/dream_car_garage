@@ -4,7 +4,6 @@ $(function() {
   var tableCounter = 0;
   var ref          = new Firebase('https://dream-car-garage.firebaseio.com/');
   var garagesRef   = ref.child('garage');
-  var newGarages   = [];
   var counter      = 1;
 
   function Car(color, year, make, model, cost) {
@@ -37,13 +36,13 @@ $(function() {
         var lastName  = $.trim($('#last-name').val());
         var email     = $.trim($('#email').val());
         var password  = $.trim($('#user-pw').val());
-        newGarages.push(new Garage(firstName, lastName, email, password));
+        var newGarage = new Garage(firstName, lastName, email, password);
         for(var i = 1; i <= 5; i++) {
           if($('#color' + i).text() !== ''){
-          newGarages[0].addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
+          newGarage.addCars($('#color' + i).text(), $('#year' + i).text(), $('#make' + i).text(), $('#model' + i).text(), $('#cost' + i).text());
           }
         }
-        garagesRef.child(newGarages[0].firstName + newGarages[0].lastName).set(newGarages[0]);
+        garagesRef.child(newGarage.firstName + newGarage.lastName).set(newGarage);
         $('#retrieve-button').after($('<p>')
                      .attr({ 'id': 'create-success', 'class': 'success two columns' })
                      .text('Garage successfully created.')
@@ -52,6 +51,7 @@ $(function() {
           removeRow();
         }
         $('#total-cost').text(0);
+        $(':input','.garage-owner-info').val('');
       } else {
         $('#retrieve-button').after($('<p>')
                    .attr({ 'id': 'create-warning', 'class': 'warning two columns' })
