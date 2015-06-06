@@ -212,7 +212,7 @@ $(function() {
     clearGarages();
     garagesRef.orderByChild('firstName').on('child_added', function(snapshot){
       var garage = snapshot.val();
-      garageList[garage.firstName] = garage;
+      garageList[garage.firstName + garage.lastName] = garage;
     });
     displayGarage(garageList);
   });
@@ -223,7 +223,7 @@ $(function() {
     clearGarages();
     garagesRef.orderByChild('lastName').on('child_added', function(snapshot){
       var garage = snapshot.val();
-      garageList[garage.firstName] = garage;
+      garageList[garage.firstName + garage.lastName] = garage;
     });
     displayGarage(garageList);
   });
@@ -234,7 +234,7 @@ $(function() {
     clearGarages();
     garagesRef.orderByChild('email').on('child_added', function(snapshot){
       var garage = snapshot.val();
-      garageList[garage.firstName] = garage;
+      garageList[garage.firstName + garage.lastName] = garage;
     });
     displayGarage(garageList);
   });
